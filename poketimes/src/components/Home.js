@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Pokeball from '../pokeball.png'
+// preko ovoga se povezujemo sa storom koji se siba preko App-a i tako redom prema svima
 import { connect } from 'react-redux'
 
 class Home extends Component {
   render(){
-    const { posts } = this.props
-    const postList = posts.length ? (
-      posts.map(post => {
+    console.log(this.props);
+    const { postsTest } = this.props
+    let kokoLoko = this.props.postsTest
+    console.log(kokoLoko);
+    console.log(postsTest);
+    const postList = postsTest.length ? (
+      postsTest.map(post => {
         return (
           <div className="post card" key={post.id}>
             <img src={Pokeball} alt="A Pokeball" />
@@ -35,10 +40,23 @@ class Home extends Component {
   }
 }
 
+// Init the props or something like that. Ovo je govno tesko ali jbg valjda cu razumeti
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    posts: state.posts
+    postsTest: state.posts
   }
 }
+// console.log(mapStateToProps);
+// console.log(mapStateToProps(Home));
+
+// // Znaci samo jedna funkcija moze da to sve povuce, zanimalo me da li mogu nekako to da razgradim.
+// function randomTest (state){
+//   return {
+//     posts: state.posts
+//   }
+// }
+
+// console.log(randomTest);
 
 export default connect(mapStateToProps)(Home)
