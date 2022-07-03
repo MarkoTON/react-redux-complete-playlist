@@ -10,15 +10,19 @@ const initState = {
 
 const rootReducer = (state = initState, action) => {
   console.log(action);
+
   if(action.type === 'DELETE_POST'){
    let newPosts = state.posts.filter(post => {
      return post.id !== action.id
    });
+
    return {
+    // Ovde se state udara ako imas neke druge stvari unutar istog. A onda dodaje posts da se zna da se samo on menja
      ...state,
      posts: newPosts
    }
   }
+
   return state;
 }
 

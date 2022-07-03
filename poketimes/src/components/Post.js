@@ -42,10 +42,16 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+// Ovo moze da se nazove kako god zelimo
+const mapDispatchToPropsTest = (dispatch) => {
+  console.log(dispatch);
+  // Test 'id' dodat da vidim sta ce konzola da izbaci
+  console.log(dispatch({type: 'DELETE_POST', id: 1}));
+
   return {
+    // Ovde deletePost dobija 'id' koji potom siba dalje. 
     deletePost: (id) => dispatch({type: 'DELETE_POST', id: id})
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Post)
+export default connect(mapStateToProps, mapDispatchToPropsTest)(Post)
