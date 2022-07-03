@@ -3,15 +3,15 @@ import { connect } from 'react-redux'
 
 class Post extends Component {
   handleClick = () => {
-    this.props.deletePost(this.props.post.id);
+    this.props.deletePost(this.props.postTest.id);
     this.props.history.push('/');
   }
   render() {
 
-    const post = this.props.post ? (
+    const post = this.props.postTest ? (
       <div className="post">
-        <h4 className="center">{this.props.post.title}</h4>
-        <p>{this.props.post.body}</p>
+        <h4 className="center">{this.props.postTest.title}</h4>
+        <p>{this.props.postTest.body}</p>
         <div className="center">
           <button className="btn grey" onClick={this.handleClick}>
             Delete Post
@@ -31,9 +31,14 @@ class Post extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps);
+  console.log(ownProps.match);
+  console.log(ownProps.match.params);
+  console.log(ownProps.match.params.post_id);
+  // post_id - tako je nazvan u ramom ruteru
   let id = ownProps.match.params.post_id;
   return {
-    post: state.posts.find(post => post.id === id)
+    postTest: state.posts.find(post => post.id === id)
   }
 }
 
